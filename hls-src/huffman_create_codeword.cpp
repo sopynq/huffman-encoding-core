@@ -27,7 +27,7 @@ assign_codewords:
     //if symbol has 0 bits, it doesn't need to be encoded
 make_codeword:
     if(length != 0) {
-      //          std::cout << first_codeword[length].to_string(2) << "\n";
+      // std::cout << first_codeword[length].to_string(2) << "\n";
       Codeword out_reversed = first_codeword[length];
       out_reversed.reverse();
       out_reversed = out_reversed >> (MAX_CODEWORD_LENGTH - length);

@@ -10,13 +10,6 @@ void sort(
   /* input  */ int num_symbols,
   /* output */ Symbol out[INPUT_SYMBOL_SIZE]) {
 
-
-#pragma HLS INTERFACE s_axilite port=in
-#pragma HLS INTERFACE s_axilite port=num_symbols
-#pragma HLS INTERFACE s_axilite port=out
-#pragma HLS INTERFACE s_axilite port=return
-
-
   Symbol previous_sorting[INPUT_SYMBOL_SIZE], sorting[INPUT_SYMBOL_SIZE];
   ap_uint<SYMBOL_BITS> digit_histogram[RADIX], digit_location[RADIX];
 

@@ -10,7 +10,7 @@ const static int TREE_DEPTH = 64;
 const static int MAX_CODEWORD_LENGTH = 27;
 
 // Should be log2(INPUT_SYMBOL_SIZE)
-const static int SYMBOL_BITS = 10;
+const static int SYMBOL_BITS = 32;
 
 // Should be log2(TREE_DEPTH)
 const static int TREE_DEPTH_BITS = 6;

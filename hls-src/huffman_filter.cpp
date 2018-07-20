@@ -1,5 +1,5 @@
 #include "huffman.h"
-// Postcondition: out[x].frequency > 0
+
 void filter(
   /* input  */ Symbol in[INPUT_SYMBOL_SIZE],
   /* output */ Symbol out[INPUT_SYMBOL_SIZE],
