@@ -3,6 +3,7 @@ import copy
 from PIL import Image
 import numpy as np
 import Symbol as sb
+import HuffmanDecode as hfd
 
 class Node():
     def __init__(self,value=0,frequency=0):
@@ -27,10 +28,22 @@ def readimage(path):
     im_total=np.column_stack((imr_dat,img_dat))
     im_total = np.column_stack((im_total, imb_dat))
     im_total=(im_total.tolist())
-    huffman(im_total[0])
-
-
-
+    (dict,dict_depth,sy)=huffman(im_total[0])
+    strr=hfd.generateString(im_total[0],dict_depth,sy)
+    decoded=hfd.HuffmanDecode(strr,sy,dict_depth)
+    right=True
+    for i in range(len(decoded)):
+        if decoded[i]!=im_total[0][i]:
+            print("error!\torigin=",end='\t')
+            print(im_total[0][i],end='\t')
+            print("error!\tdeocded",end='\t')
+            print(decoded[i],end='\n')
+            right=False
+    if right==True:
+        for i in range(len(decoded)):
+            print(decoded[i],end='\t')
+            if i % 4==0:
+                print()
 
 def huffman(str):
     #print(len(str))
@@ -77,6 +90,8 @@ def huffman(str):
         print("code=", end='\t')
         print(res[i], end='\n')
 
+    return (res,ret2_dep,ret2_sy)
+
 def Huffman_Create(nodes):
 #        for i in range(len(nodes)):
 #            print("value=  ",end='\t')
@@ -118,8 +133,8 @@ def Huffman_Create(nodes):
         #    print(depth_list[i])
 
         for i in range(len(symbol_list)):
-            for j in range(len(symbol_list)):
-                if symbol_list[i]<symbol_list[j]:
+            for j in range(i+1,len(symbol_list)):
+                if symbol_list[i]>symbol_list[j]:
                     temp_symbol = symbol_list[i]
                     temp_depth = depth_list[i]
                     temp_freq = freq_list[i]
@@ -134,18 +149,18 @@ def Huffman_Create(nodes):
         ret1_dep=copy.copy(depth_list)
         ret1_fre=copy.copy(freq_list)
 
-        for i in range(len(symbol_list)):
-            for j in range(len(symbol_list)):
-                if depth_list[i]<depth_list[j]:
-                    temp_symbol = symbol_list[i]
-                    temp_depth = depth_list[i]
-                    temp_freq = freq_list[i]
-                    symbol_list[i] = symbol_list[j]
-                    depth_list[i] = depth_list[j]
-                    freq_list[i] = freq_list[j]
-                    symbol_list[j] = temp_symbol
-                    depth_list[j] = temp_depth
-                    freq_list[j] = temp_freq
+        for i in range(len(symbol_list)-1):
+            for j in range(len(symbol_list)-1):
+                if depth_list[j]>depth_list[j+1]:
+                    temp_symbol = symbol_list[j]
+                    temp_depth = depth_list[j]
+                    temp_freq = freq_list[j]
+                    symbol_list[j] = symbol_list[j+1]
+                    depth_list[j] = depth_list[j+1]
+                    freq_list[j] = freq_list[j+1]
+                    symbol_list[j+1] = temp_symbol
+                    depth_list[j+1] = temp_depth
+                    freq_list[j+1] = temp_freq
 
 
         ret2_sy = copy.copy(symbol_list)
