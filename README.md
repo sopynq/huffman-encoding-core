@@ -1,6 +1,9 @@
 # huffman-encoding-core
 Huffman encoding core (Vivado HLS)
 
+### Screenshot
+![block design](./.screenshots/block-design.png)
+
 ### How to run
 
 #### Download source code
