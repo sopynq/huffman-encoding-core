@@ -1,7 +1,7 @@
 # huffman-encoding-core
 Huffman encoding core (Vivado HLS)
 
-### Screenshot
+### Overview
 ![block design](./.screenshots/block-design.png)
 
 ### How to run
@@ -21,7 +21,7 @@ $ vivado_hls -f setup.tcl
 
 ### Tests
 
-`tests` folder contains some test cases which should be run on `PYNQ` board. If you are running a bare zynq board you should write drivers your self
+`tests` folder contains some test cases which should be run on `PYNQ` board. If you are running a bare zynq board you should write drivers yourself
 
 ### Reference
 
